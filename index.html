@@ -10,7 +10,7 @@
   <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
       <script type="text/javascript">
 
-      // TRY № 2
+      // TRY № 3
 
       vkBridge.send('VKWebAppInit')
         .then((data) => { 
@@ -54,9 +54,9 @@
       }
 
       function CheckNativeAds(adFormat){
-        console.log("Ad Format: " + UTF8ToString(adFormat));
+        console.log("Ad Format: " + adFormat);
         vkBridge.send('VKWebAppCheckNativeAds', {
-          ad_format: UTF8ToString(adFormat)
+          ad_format: adFormat
         })
           .then((data) => { 
             if (data.result) { 

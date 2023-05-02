@@ -60,9 +60,9 @@
         })
           .then((data) => { 
             if (data.result) { 
-              unityI.SendMessage('VKSDK', 'AdAccessibility', true);
+              unityI.SendMessage('VKSDK', 'AdAccessibility', data.result);
             } else {
-              unityI.SendMessage('VKSDK', 'AdAccessibility', false);
+              unityI.SendMessage('VKSDK', 'AdAccessibility', data.result);
             }    
           })
           .catch((error) => { 

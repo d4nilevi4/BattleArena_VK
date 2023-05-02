@@ -59,11 +59,7 @@
           ad_format: adFormat
         })
           .then((data) => { 
-            if (data.result) { 
-              unityI.SendMessage('VKSDK', 'AdAccessibility', data.result);
-            } else {
-              unityI.SendMessage('VKSDK', 'AdAccessibility', data.result);
-            }    
+            unityI.SendMessage('VKSDK', 'AdAccessibility', JSON.stringify(data));    
           })
           .catch((error) => { 
             console.log("CheckNativeAds error: "); 

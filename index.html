@@ -10,13 +10,12 @@
   <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
       <script type="text/javascript">
 
-      // TRY № 000
+      // TRY № 9
 
       vkBridge.send('VKWebAppInit')
         .then((data) => { 
           if (data.result) {
             console.log("WebApp is initialized");
-            ShowBannerAd();
           } else {
             console.log("WebApp is not initialized");
           }

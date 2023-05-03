@@ -10,7 +10,7 @@
   <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
       <script type="text/javascript">
 
-      // TRY № 7
+      // TRY № 8
 
       vkBridge.send('VKWebAppInit')
         .then((data) => { 
@@ -33,7 +33,7 @@
       }
 
       function ShowNativeAd(adFormat){
-        console.log('AdFormat' + adFormat);
+        console.log('_Show_AdFormat: ' + adFormat);
         vkBridge.send('VKWebAppShowNativeAds', {
           ad_format: adFormat
         })
@@ -41,6 +41,7 @@
           if(data.result){
             if(adFormat == 'reward'){
               unityI.SendMessage('VKSDK', 'Rewarded');
+              console.log('___Rewarded___');
             }
           }
           unityI.SendMessage('VKSDK', 'AdClosed');
@@ -48,6 +49,7 @@
       }
 
       function CheckNativeAds(adFormat){
+        console.log('_Check_AdFormat: ' + adFormat);
         vkBridge.send('VKWebAppCheckNativeAds', {
           ad_format: adFormat
         })

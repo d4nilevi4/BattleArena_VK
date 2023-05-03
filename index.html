@@ -97,6 +97,7 @@
       }
 
       function AppRecommend(){
+        console.log("Try AppRecommend"); 
         vkBridge.send('VKWebAppRecommend')
           .then((data) => { 
             if (data.result) {

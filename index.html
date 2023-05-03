@@ -25,36 +25,28 @@
         });
 
       function Auth(){
+        console.log('Autificate');
         vkBridge.send('VKWebAppGetUserInfo').then(_info => {
+          console.log('PlayerInfo')
           console.log(_info);
         });
       }
 
-      function ShowFullscrenAd(){
-        vkBridge.send('VKWebAppShowNativeAds', {ad_format: 'interstitial'}).then(data => {
+      function ShowNativeAd(adFormat){
+        vkBridge.send('VKWebAppShowNativeAds', {
+          ad_format: adFormat
+        })
+        .then(data => {
           if(data.result){
-            console.log("Interstitial ad was shown success");
-          } else {
-            console.log("Interstitial ad was shown with error");
-          }
-          unityI.SendMessage('VKSDK', 'AdClosed');
-        });
-      }
-
-      function ShowRewardedAd(){
-        vkBridge.send('VKWebAppShowNativeAds', {ad_format: 'reward'}).then(data => {
-          if(data.result){
-            console.log("Reward ad was shown success");
-            unityI.SendMessage('VKSDK', 'Rewarded');
-          } else {
-            console.log("Reward ad was shown with error");
+            if(adFormat == 'reward'){
+              unityI.SendMessage('VKSDK', 'Rewarded');
+            }
           }
           unityI.SendMessage('VKSDK', 'AdClosed');
         });
       }
 
       function CheckNativeAds(adFormat){
-        console.log("Ad Format: " + adFormat);
         vkBridge.send('VKWebAppCheckNativeAds', {
           ad_format: adFormat
         })

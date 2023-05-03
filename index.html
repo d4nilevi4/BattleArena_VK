@@ -10,7 +10,7 @@
   <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
       <script type="text/javascript">
 
-      // TRY № 9
+      // TRY № 000
 
       vkBridge.send('VKWebAppInit')
         .then((data) => { 
@@ -25,9 +25,11 @@
         });
 
       vkBridge.subscribe((e) => {
-        console.log('TRY VKWebAppViewHide');
         if (e.detail.type === 'VKWebAppViewHide') {
-          console.log('VKWebAppViewHide');
+          unityI.SendMessage('VKSDK', 'AppViewHide');
+        }
+        if (e.detail.type === 'VKWebAppViewRestore') {
+          unityI.SendMessage('VKSDK', 'AppViewRestore');
         }
       });
 
@@ -41,6 +43,7 @@
 
       function ShowNativeAd(adFormat){
         console.log('_Show_AdFormat: ' + adFormat);
+        unityI.SendMessage('VKSDK', 'AdvOpened');
         vkBridge.send('VKWebAppShowNativeAds', {
           ad_format: adFormat
         })
@@ -104,7 +107,6 @@
       }
 
       function AppRecommend(){
-        console.log("Try AppRecommend"); 
         vkBridge.send('VKWebAppRecommend')
           .then((data) => { 
             if (data.result) {

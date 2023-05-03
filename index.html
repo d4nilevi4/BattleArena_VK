@@ -10,12 +10,13 @@
   <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
       <script type="text/javascript">
 
-      // TRY № 8
+      // TRY № 000
 
       vkBridge.send('VKWebAppInit')
         .then((data) => { 
           if (data.result) {
             console.log("WebApp is initialized");
+            ShowBannerAd();
           } else {
             console.log("WebApp is not initialized");
           }
@@ -77,6 +78,7 @@
             }
           })
           .catch((error) => {
+            console.log("AppAddToFavorites error: "); 
             console.log(error);
           });
       }
@@ -89,8 +91,9 @@
             }
           })
           .catch((error) => {
-            return null;
+            console.log("GetClientPlatformInfo error: "); 
             console.log(error);
+            return null;
           });
       }
 
@@ -102,8 +105,56 @@
             }
           })
           .catch((error) => {
+            console.log("AppRecommend error: "); 
             console.log(error);
           });
+      }
+
+      function SetVibration(){
+        vkBridge.send('VKWebAppTapticImpactOccurred', {
+          style: 'light'
+        })
+        .then((data) => { 
+          if (data.result) {
+            console.log('Vibration');
+          }
+        })
+        .catch((error) => {
+          console.log("Vibration error: "); 
+          console.log(error);
+        });
+      }
+
+      function ShowLeaderBoardBox(userResult) {
+        vkBridge.send("VKWebAppShowLeaderBoardBox", {
+          user_result: userResult
+        })
+        .then( (data) => {
+          if (data.success) {
+            console.log('LeaderBoard was shown');
+          }
+        })
+        .catch( (error) => {
+          console.log("ShowLeaderBoardBox error: "); 
+          console.log(error);
+        });
+      }
+
+      function ShowBannerAd() {
+        vkBridge.send('VKWebAppShowBannerAd', {
+          banner_location: 'bottom',
+          layout_type: 'resize',
+          can_close: 'false'
+        })
+        .then((data) => { 
+          if (data.result) {
+            console.log('LeaderBoard was shown');
+          }
+        })
+        .catch((error) => {
+          console.log("ShowBannerAd error: "); 
+          console.log(error);
+        });
       }
 
   </script>

@@ -66,7 +66,7 @@
       function AppShare(){
         vkBridge.send('VKWebAppShare', 
         {
-          link: 'https://vk.com/app51503695' // Должна быть ссылка текущего приложения
+          link: 'https://vk.com/app51632701' // Должна быть ссылка текущего приложения
         });
       }
 
@@ -141,6 +141,7 @@
       }
 
       function ShowBannerAd() {
+        console.log('Try ShowBannerAd');
         vkBridge.send('VKWebAppShowBannerAd', {
           banner_location: 'bottom',
           layout_type: 'resize',
@@ -148,7 +149,7 @@
         })
         .then((data) => { 
           if (data.result) {
-            console.log('LeaderBoard was shown');
+            console.log('BannerAd was shown');
           }
         })
         .catch((error) => {

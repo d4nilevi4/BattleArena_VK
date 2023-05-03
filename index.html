@@ -10,7 +10,7 @@
   <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
       <script type="text/javascript">
 
-      // TRY № 000
+      // TRY № 7
 
       vkBridge.send('VKWebAppInit')
         .then((data) => { 
@@ -33,6 +33,7 @@
       }
 
       function ShowNativeAd(adFormat){
+        console.log('AdFormat' + adFormat);
         vkBridge.send('VKWebAppShowNativeAds', {
           ad_format: adFormat
         })
